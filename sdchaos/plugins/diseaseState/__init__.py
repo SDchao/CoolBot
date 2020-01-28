@@ -9,7 +9,8 @@ from .config import GROUP_LIST
 import nonebot
 from aiocqhttp.exceptions import Error as CQHttpError
 
-@on_command("ds", aliases=("查询"))
+
+@on_command("ds", aliases=("查询","疫情"))
 async def checkState(session: CommandSession):
     if not isAllowTo(session.ctx):
         return
@@ -22,7 +23,8 @@ async def checkState(session: CommandSession):
     if(result):
         await session.send(result)
 
-@nonebot.scheduler.scheduled_job("interval", minutes = 1)
+
+@nonebot.scheduler.scheduled_job("interval", minutes=1)
 async def _():
     logger.info("即将尝试推送新闻")
     newsList = getNews()
@@ -31,6 +33,6 @@ async def _():
     try:
         for news in newsList:
             for group in GROUP_LIST:
-                await bot.send_group_msg(group_id = group, message = news)
+                await bot.send_group_msg(group_id=group, message=news)
     except CQHttpError:
         logger.error("发送疾病新闻失败")
