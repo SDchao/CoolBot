@@ -24,7 +24,7 @@ async def checkState(session: CommandSession):
         await session.send(result)
 
 
-@nonebot.scheduler.scheduled_job("interval", minutes=1)
+@nonebot.scheduler.scheduled_job("interval", minutes=5)
 async def _():
     logger.info("即将尝试推送新闻")
     newsList = getNews()
