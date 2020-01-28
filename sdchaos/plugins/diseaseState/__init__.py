@@ -1,4 +1,5 @@
 from nonebot import on_command, CommandSession
+from nonebot import logger
 
 from .checker import CheckArea
 from .checker import isAllowTo
@@ -30,4 +31,4 @@ async def _():
             for group in GROUP_LIST:
                 await bot.send_group_msg(group_id = group, message = news)
     except CQHttpError:
-        pass
+        logger.error("发送疾病新闻失败")
