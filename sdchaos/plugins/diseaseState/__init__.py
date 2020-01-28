@@ -10,7 +10,7 @@ import nonebot
 from aiocqhttp.exceptions import Error as CQHttpError
 
 
-@on_command("ds", aliases=("查询","疫情"))
+@on_command("ds", aliases=["查询","疫情"])
 async def checkState(session: CommandSession):
     if not isAllowTo(session.ctx):
         return
