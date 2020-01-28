@@ -26,6 +26,7 @@ async def checkState(session: CommandSession):
 async def _():
     logger.info("即将尝试推送新闻")
     newsList = getNews()
+    logger.info(newsList)
     bot = nonebot.get_bot()
     try:
         for news in newsList:
