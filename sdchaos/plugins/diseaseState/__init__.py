@@ -24,6 +24,7 @@ async def checkState(session: CommandSession):
 
 @nonebot.scheduler.scheduled_job("interval", minutes = 1)
 async def _():
+    logger.info("即将尝试推送新闻")
     newsList = getNews()
     bot = nonebot.get_bot()
     try:
