@@ -3,6 +3,7 @@ from nonebot import on_command, CommandSession
 from .checker import CheckArea
 from .checker import isAllowTo
 from .checker import getNews
+from .config import GROUP_LIST
 
 import nonebot
 from aiocqhttp.exceptions import Error as CQHttpError
@@ -24,10 +25,9 @@ async def checkState(session: CommandSession):
 async def _():
     newsList = getNews()
     bot = nonebot.get_bot()
-    AnnouceGroup = [1036516059]
     try:
         for news in newsList:
-            for group in AnnouceGroup:
-                await bot.send_group_message(group_id = group, message = news)
+            for group in GROUP_LIST:
+                await bot.send_group_msg(group_id = group, message = news)
     except CQHttpError:
         pass

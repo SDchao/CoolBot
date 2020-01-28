@@ -54,7 +54,7 @@ def _CombineResult(area: str, confirmed: int, suspected: int, dead: int, cur: in
     if dead > 0:
         result += "\n死亡人数：" + str(dead)
     if cur > 0:
-        result += "\n治愈人数" + str(cur)
+        result += "\n治愈人数：" + str(cur)
     return result
 
 def isAllowTo(ctx : Context_T) -> bool :
@@ -69,7 +69,7 @@ def isAllowTo(ctx : Context_T) -> bool :
     return False
 
 def getNews() -> list:
-    lastId = "630"
+    lastId = "636"
     lastIdPath = path.join(path.dirname(__file__),"latestid.tmp")
     if(path.exists(lastIdPath)):
         f = open(lastIdPath,"r")
