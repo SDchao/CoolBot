@@ -1,1 +1,1 @@
-watch -n 1 cat bot.log
+tail -f bot.log
