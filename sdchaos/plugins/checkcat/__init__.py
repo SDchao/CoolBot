@@ -59,7 +59,7 @@ async def _():
         global totalCatCount
         totalCatCount = 0
         saveFile = open(catSavePath,"w")
-        saveFile.Write(str(0))
+        saveFile.write(str(0))
         saveFile.close()
 
         await bot.send_group_msg(group_id=796439009, message=f"今天群友们一共发送了{tmpCatCount}张猫图\n明天也要继续努力哦")
