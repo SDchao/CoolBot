@@ -10,7 +10,7 @@ from .data_source import animalInPic
 from .data_source import isAllowTo
 
 totalCatCount : int = 0
-catSavePath = path.join(path.dirname(__file__),"totalCatCount.txt")  
+catSavePath = path.join(path.dirname(__file__),"totalCatCount.tmp")  
 
 @on_command("checkCat")
 async def checkCat(session : CommandSession):
