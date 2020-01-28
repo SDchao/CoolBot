@@ -33,6 +33,9 @@ async def _():
     try:
         for news in newsList:
             for group in GROUP_LIST:
-                await bot.send_group_msg(group_id=group, message=news)
+                try:
+                    await bot.send_group_msg(group_id=group, message=news)
+                except CQHttpError:
+                    logger.error("发送新闻到 " + str(group) + " 失败！")
     except BaseException:
         logger.error("发送疾病新闻失败")
