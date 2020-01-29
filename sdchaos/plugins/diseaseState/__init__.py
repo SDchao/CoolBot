@@ -1,5 +1,5 @@
 from nonebot import on_command, CommandSession
-from nonebot import logger
+from nonebot import logger, permission
 
 from .checker import CheckArea
 from .checker import isAllowTo
@@ -23,9 +23,13 @@ async def checkState(session: CommandSession):
     if(result):
         await session.send(result)
 
+@on_command("pushnews", permission = permission.SUPERUSER)
+async def pushNewsForce(session : CommandSession):
+    await pushNews()
+
 
 @nonebot.scheduler.scheduled_job("interval", minutes=5)
-async def _():
+async def pushNews():
     logger.info("即将尝试推送新闻")
     newsList = getNews()
     logger.info(newsList)
