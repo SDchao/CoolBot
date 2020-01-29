@@ -99,5 +99,4 @@ def _CombineNews(newsObject) -> str :
     result = newsObject["pubDateStr"]
     result += "\n" + newsObject["title"]
     result += "\n来自 " + newsObject["infoSource"]
-    result += "\n" + newsObject["sourceUrl"]
     return result
