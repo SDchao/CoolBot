@@ -9,7 +9,7 @@ __plugin_usage__ = r"""
 news [省份名称] [发布经过的小时]
 
 例如:
-news 安徽 24
+news 安徽 10
 """
 
 

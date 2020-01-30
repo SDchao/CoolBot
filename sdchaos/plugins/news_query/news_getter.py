@@ -4,7 +4,7 @@ from datetime import timedelta
 import requests
 
 
-def get_news(provience: str, hour = "24") -> list:
+def get_news(provience: str, hour = "10") -> list:
     url = "https://file1.dxycdn.com/2020/0127/794/3393185296027391740-115.json"
     respone = requests.get(url)
     j = respone.json()
