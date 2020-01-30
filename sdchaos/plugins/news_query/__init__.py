@@ -28,5 +28,8 @@ async def news(session: CommandSession):
             news_list = news_getter.get_news(arg_list[0])
         else :
             news_list = news_getter.get_news(arg_list[0], arg_list[1])
+            if len(news_list) == 0:
+                await session.send("欸，没有找到有关报道呐\n暂不支持城市查询呐")
+                return
         for newsMsg in news_list :
             await session.send(newsMsg)
