@@ -13,7 +13,7 @@ news 安徽 10
 """
 
 
-@on_command("news", aliases=["新闻", "要闻", "n"])
+@on_command("news", aliases=["新闻", "要闻", "n"], only_to_me=False)
 async def news(session: CommandSession):
     global __plugin_usage__    
     if not checker.isAllowTo(session.ctx):
