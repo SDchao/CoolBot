@@ -44,4 +44,5 @@ def _combine_news(newsObject) -> str:
 
 
 if __name__ == "__main__":
-    get_news("安徽", hour=24)
+    rList = get_news("陕西")
+    print(rList)
