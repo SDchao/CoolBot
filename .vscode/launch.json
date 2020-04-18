@@ -18,6 +18,7 @@
             "request": "launch",
             "program": "bot.py",
             "cwd": "${workspaceFolder}",
+            "pythonPath": "python37",
             "console": "integratedTerminal"
         }
     ]
