@@ -25,18 +25,9 @@ async def _(session: nonebot.CommandSession):
         tmpList = arg.split(" ")
         itemList = list(set(tmpList))
         session.state["items"] = itemList
-
-    if session.is_first_run:
-        # First 且含有参数
-        if arg:
-            session.state["items"] = itemList
-        return
-    else:
-        # Second
-        if not arg:
-            session.finish("你这不是啥都没有输入嘛……")
-
-        session.state["items"] = itemList
+    elif not session.is_first_run:
+        # 若不是第一次询问且还是没有参数
+        session.finish("你这不是啥都没有输入嘛……")
 
 @nonebot.on_natural_language(keywords=["选", "挑", "猜", "随便"])
 async def _(session: nonebot.NLPSession):
