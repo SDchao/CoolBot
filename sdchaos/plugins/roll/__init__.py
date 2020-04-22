@@ -3,8 +3,9 @@ import random
 
 COMPLETE_TEXT = ("那当然是&item&啦！", "不妨选择&item&", "肯定要&item&", "我觉得应该&item&")
 
-@nonebot.on_command("roll",aliases=["r"])
-async def roll(session : nonebot.CommandSession):
+
+@nonebot.on_command("roll", aliases=["r"])
+async def roll(session: nonebot.CommandSession):
     itemList = session.get("items", prompt="请输入选项哦，用空格间隔开哦")
     if(len(itemList) < 2):
         session.finish("不可以只Roll一个东西啊！坏蛋")
@@ -15,44 +16,41 @@ async def roll(session : nonebot.CommandSession):
         await session.send(reMsg)
 
 
-        
-
 
 @roll.args_parser
-async def _(session : nonebot.CommandSession):
+async def _(session: nonebot.CommandSession):
     arg = session.current_arg_text.strip()
     if arg:
         # 将arg按空格拆分为随机item
         tmpList = arg.split(" ")
         itemList = list(set(tmpList))
         session.state["items"] = itemList
-    
+
     if session.is_first_run:
-        #First 且含有参数
+        # First 且含有参数
         if arg:
             session.state["items"] = itemList
         return
     else:
-        #Second
+        # Second
         if not arg:
             session.finish("你这不是啥都没有输入嘛……")
-        
+
         session.state["items"] = itemList
 
-
-
-
-@nonebot.on_natural_language(keywords=["选","挑","猜", "随便"])
-async def _(session : nonebot.NLPSession):
+@nonebot.on_natural_language(keywords=["选", "挑", "猜", "随便"])
+async def _(session: nonebot.NLPSession):
     arg = _get_nlp_arg(session.msg_text)
     return nonebot.IntentCommand(70, "roll", current_arg=arg or "")
 
+
 @nonebot.on_natural_language(keywords=["随机", "帮我选", "帮我挑"])
-async def _(session : nonebot.NLPSession):
+async def _(session: nonebot.NLPSession):
     arg = _get_nlp_arg(session.msg_text)
     return nonebot.IntentCommand(85, "roll", current_arg=arg or "")
 
-def _get_nlp_arg(rawMsg : str) -> str:
+
+def _get_nlp_arg(rawMsg: str) -> str:
     """获取NLP关键词命中后的参数
 
     Returns:
@@ -68,7 +66,8 @@ def _get_nlp_arg(rawMsg : str) -> str:
     else:
         return msgList[1]
 
-def _get_complete_text(selected : str) -> str :
+
+def _get_complete_text(selected: str) -> str:
     global COMPLETE_TEXT
     randomIndex = random.randint(0, len(COMPLETE_TEXT) - 1)
     return COMPLETE_TEXT[randomIndex].replace("&item&", selected)
