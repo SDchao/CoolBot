@@ -1,1 +1,0 @@
-nohup python3 -u bot.py > bot.log 2>&1 &
