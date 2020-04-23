@@ -27,7 +27,7 @@ async def _(session: nonebot.CommandSession):
 
         # 若有重复项
         if(len(itemList) < len(tmpList)):
-            session.send("居然有重复！帮你去掉了啊坏蛋")
+            await session.send("居然有重复！帮你去掉了啊坏蛋")
         session.state["items"] = itemList
     elif not session.is_first_run:
         # 若不是第一次询问且还是没有参数
