@@ -6,7 +6,7 @@ COMPLETE_TEXT = ("那当然是&item&啦！", "不妨选择&item&", "肯定要&it
 
 @nonebot.on_command("roll", aliases=["r"])
 async def roll(session: nonebot.CommandSession):
-    itemList = session.get("items", prompt="请输入选项哦，用空格间隔开哦")
+    itemList = session.get("items", prompt="请输入选项，用空格间隔开哦")
     if(len(itemList) < 2):
         session.finish("不可以只Roll一个东西啊！坏蛋")
     else:
@@ -24,6 +24,10 @@ async def _(session: nonebot.CommandSession):
         # 将arg按空格拆分为随机item
         tmpList = arg.split(" ")
         itemList = list(set(tmpList))
+
+        # 若有重复项
+        if(len(itemList) < len(tmpList)):
+            session.send("居然有重复！帮你去掉了啊坏蛋")
         session.state["items"] = itemList
     elif not session.is_first_run:
         # 若不是第一次询问且还是没有参数
