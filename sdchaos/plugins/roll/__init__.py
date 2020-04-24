@@ -33,13 +33,13 @@ async def _(session: nonebot.CommandSession):
         # 若不是第一次询问且还是没有参数
         session.finish("你这不是啥都没有输入嘛……")
 
-@nonebot.on_natural_language(keywords=["选", "挑", "猜", "随便"])
+@nonebot.on_natural_language(keywords=["选", "挑", "猜", "随便", "要不要"])
 async def _(session: nonebot.NLPSession):
     arg = _get_nlp_arg(session.msg_text)
     return nonebot.IntentCommand(70, "roll", current_arg=arg or "")
 
 
-@nonebot.on_natural_language(keywords=["随机", "帮我选", "帮我挑"])
+@nonebot.on_natural_language(keywords=["随机", "帮我选", "帮我挑", "该不该"])
 async def _(session: nonebot.NLPSession):
     arg = _get_nlp_arg(session.msg_text)
     return nonebot.IntentCommand(85, "roll", current_arg=arg or "")
