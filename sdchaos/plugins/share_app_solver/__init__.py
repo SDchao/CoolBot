@@ -14,12 +14,12 @@ async def _solve_app(session : nonebot.CommandSession):
         msg = msg_raw.replace("&amp;#44;", ",").replace("&amp;#91;","[").replace("&amp;#93;","]")
         if(msg.find("title=[QQ小程序]哔哩哔哩") != -1):
             # 若为哔哩哔哩小程序
-            content = re.match("\[CQ:rich,content=(.*),")
+            content = re.match("\[CQ:rich,content=(.*),", msg)
             if content:
                 content = content.group(1)
                 contentObj = json.loads(content)
 
-                title = contentObj["desc"]
+                title = contentObj["detail_1"]["desc"]
 
                 msg = search(title)
                 await session.send(msg)
