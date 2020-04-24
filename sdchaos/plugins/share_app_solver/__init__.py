@@ -2,9 +2,8 @@ import nonebot
 import json
 import re
 import asyncio
+import requests
 from nonebot import logger
-
-from .bili_search import search
 
 @nonebot.on_command("_solve_app")
 async def _solve_app(session : nonebot.CommandSession):
@@ -20,12 +19,16 @@ async def _solve_app(session : nonebot.CommandSession):
                 contentObj = json.loads(content)
 
                 title = contentObj["detail_1"]["desc"]
+                url = contentObj["detail_1"]["qqdocurl"]
 
-                msg = search(title)
-                await session.send(msg)
-
-        
-
+                r = requests.get(url, allow_redirects = False)
+                if(r.status_code == 302):
+                    url = r.url
+                    m = re.match("(.*?)\?", url)
+                    if m:
+                        url = m.group(1)
+                        msg = title + "\n" + url
+                        await session.send(msg)
 
 @nonebot.on_natural_language(only_to_me= False, only_short_message= False)
 async def _solve_app_nlp(session : nonebot.NLPSession):
