@@ -4,6 +4,8 @@ import re
 import asyncio
 from nonebot import logger
 
+from .bili_search import search
+
 @nonebot.on_command("_solve_app")
 async def _solve_app(session : nonebot.CommandSession):
     if(session.current_arg):
@@ -18,7 +20,10 @@ async def _solve_app(session : nonebot.CommandSession):
                 contentObj = json.loads(content)
 
                 title = contentObj["desc"]
-                url = contentObj["url"]
+
+                msg = search(title)
+                await session.send(msg)
+
         
 
 
