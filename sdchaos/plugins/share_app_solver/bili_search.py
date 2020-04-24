@@ -29,7 +29,7 @@ def search(title : str) -> str:
     else:
         # 成功获取内容
         content = respone.text
-        info = analysis_video(content, title)
+        info = _analysis_video(content, title)
 
         if not info:
             # 若没有相关信息则返回None
@@ -45,7 +45,7 @@ def search(title : str) -> str:
             return msg
 
 
-def analysis_video(content : str, target_title : str) -> dict:
+def _analysis_video(content : str, target_title : str) -> dict:
     soup = BeautifulSoup(content, features="html5lib")
     # 获取视频父
     videoParent : BeautifulSoup = soup.find("ul", attrs={"type" : "video", "class" : "video-list clearfix"})
