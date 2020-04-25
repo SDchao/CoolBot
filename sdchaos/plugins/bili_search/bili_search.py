@@ -52,7 +52,9 @@ def _analysis_video(content : str, target_title : str) -> dict:
     for video in videoParent.find_all("li", class_= "video-item matrix"):
         # 遍历视频的title
         title = video.a["title"]
-        if(title == target_title):
+        # if(title == target_title):
+        # 不要求准确标题
+        if(True):
             # 发现目标视频
             tags = video.find("div", class_ = "tags").find_all("span")
             ret : dict= {}
