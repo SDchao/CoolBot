@@ -1,7 +1,7 @@
 from .bili_search import search
 import nonebot
 
-@nonebot.on_command("search_b", aliases=("搜索B站", "B站视频"))
+@nonebot.on_command("search_b", aliases=("搜索B站", "B站视频", "搜索视频"))
 async def search_b(session : nonebot.CommandSession):
     t = session.get("title", prompt="请输入要查找的视频标题")
     msg = search(t)
@@ -15,7 +15,7 @@ async def _(session : nonebot.CommandSession):
     elif not session.is_first_run:
         session.finish("你这不是什么都没输入嘛")
 
-@nonebot.on_natural_language(keywords={"搜索B站", "B站视频", "搜索b站", "b站视频"})
+@nonebot.on_natural_language(keywords={"搜索B站", "B站视频", "搜索b站", "b站视频", "搜索视频"})
 async def _(session : nonebot.NLPSession):
     args = session.msg_text.strip().split(" ",1)
     arg = ""
