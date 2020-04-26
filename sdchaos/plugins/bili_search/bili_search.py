@@ -49,7 +49,7 @@ def _analysis_video(content : str, target_title : str) -> dict:
     soup = BeautifulSoup(content, features="html5lib")
     # 获取视频父
     videoParent : BeautifulSoup = soup.find("ul", attrs={"type" : "video", "class" : "video-list clearfix"})
-    for video in videoParent.find_all("li", class_= "video-item matrix"):
+    for video in videoParent.find_all("li", class_= "video-item"):
         # 遍历视频的title
         title = video.a["title"]
         # if(title == target_title):
