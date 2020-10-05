@@ -11,6 +11,6 @@ async def _(session: nonebot.CommandSession):
         await session.send(reply_msg)
 
 
-@nonebot.on_natural_language(keywords=["骂", "对线", "嘴臭", "祖安", "罗东旭", "ldx", "东旭"])
+@nonebot.on_natural_language(keywords=["骂", "对线", "嘴臭", "祖安"])
 async def _(session: nonebot.NLPSession):
     return nonebot.IntentCommand(90.0, "nmsl")
