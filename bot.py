@@ -9,4 +9,4 @@ if __name__ == "__main__":
     nonebot.load_plugin("sdchaos.plugins.roll")
     nonebot.load_plugin("sdchaos.plugins.share_app_solver")
     nonebot.load_plugin("sdchaos.plugins.bili_search")
-    nonebot.run(host="127.0.0.1", port=8081)
+    nonebot.run(host="127.0.0.1", port=8080)

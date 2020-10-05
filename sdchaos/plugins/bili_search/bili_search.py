@@ -6,13 +6,13 @@ SEARCH_URL = "https://search.bilibili.com/all?keyword=%keyword%"
 
 
 def search(title: str) -> str:
-    '''
+    """
     获取对应标题的bilibili视频链接
 
     Returns:
         返回视频链接，若无结果返回None
         若出现错误则返回对应描述字符串
-    '''
+    """
 
     # 若不包含Title，返回空
     if not title:
