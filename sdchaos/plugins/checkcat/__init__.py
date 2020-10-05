@@ -20,18 +20,18 @@ async def checkCat(session: CommandSession):
     global totalCatCount
     global catSavePath
 
-    if(path.exists(catSavePath)):
+    if (path.exists(catSavePath)):
         saveFile = open(catSavePath, "r")
         totalCatCount = int(saveFile.read())
         logger.debug("Loaded CatCount: " + str(totalCatCount))
 
     for picUrl in picUrlList:
         name = await animalInPic(picUrl)
-        if(name and name.find("猫") != -1):
+        if (name and name.find("猫") != -1):
             totalCatCount += 1
             hasCat = True
 
-    if(hasCat):
+    if (hasCat):
         await session.send(f"您刚刚发送了一只{name}\n今日猫图：{totalCatCount}")
         saveFile = open(catSavePath, "w")
         saveFile.write(str(totalCatCount))
@@ -51,14 +51,14 @@ async def _():
     try:
         bot = nonebot.get_bot()
         global catSavePath
-        
+
         saveFile = open(catSavePath, "r")
         tmpCatCount = int(saveFile.read())
         saveFile.close()
 
         global totalCatCount
         totalCatCount = 0
-        saveFile = open(catSavePath,"w")
+        saveFile = open(catSavePath, "w")
         saveFile.write(str(0))
         saveFile.close()
 

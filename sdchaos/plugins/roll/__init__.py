@@ -7,14 +7,13 @@ COMPLETE_TEXT = ("那当然是&item&啦！", "不妨选择&item&", "肯定要&it
 @nonebot.on_command("roll", aliases=["r"])
 async def roll(session: nonebot.CommandSession):
     itemList = session.get("items", prompt="请输入选项，用空格间隔开哦")
-    if(len(itemList) < 2):
+    if (len(itemList) < 2):
         session.finish("不可以只Roll一个东西啊！坏蛋")
     else:
         randomIndex = random.randint(0, len(itemList) - 1)
         selected = itemList[randomIndex]
         reMsg = _get_complete_text(selected)
         await session.send(reMsg)
-
 
 
 @roll.args_parser
@@ -26,12 +25,13 @@ async def _(session: nonebot.CommandSession):
         itemList = list(set(tmpList))
 
         # 若有重复项
-        if(len(itemList) < len(tmpList)):
+        if (len(itemList) < len(tmpList)):
             await session.send("居然有重复！帮你去掉了啊坏蛋")
         session.state["items"] = itemList
     elif not session.is_first_run:
         # 若不是第一次询问且还是没有参数
         session.finish("你这不是啥都没有输入嘛……")
+
 
 @nonebot.on_natural_language(keywords=["选", "挑", "猜", "随便", "要不要"])
 async def _(session: nonebot.NLPSession):
@@ -56,7 +56,7 @@ def _get_nlp_arg(rawMsg: str) -> str:
     msgList = rawMsg.split(" ", 1)
 
     # 若消息只有1节
-    if(len(msgList) < 2):
+    if (len(msgList) < 2):
         return None
     else:
         return msgList[1]
